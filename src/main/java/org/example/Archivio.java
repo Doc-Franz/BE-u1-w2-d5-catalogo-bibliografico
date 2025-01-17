@@ -27,22 +27,22 @@ public class Archivio {
     }
 
     public void addBook() throws DuplicatedCodeException {
-        libro = new Libro(faker.book().title().hashCode(), getAnnoDiPubblicazione(), getNumeroDiPagine(), faker.book().author(), faker.book().genre());
+        libro = new Libro((int) (Math.random() * 200), getAnnoDiPubblicazione(), getNumeroDiPagine(), faker.book().author(), faker.book().genre());
         if (!isDuplicated) {
             archivioList.add(libro);
         } else {
-            throw new DuplicatedCodeException("L'articolo è già presente in archivio...");
+            throw new DuplicatedCodeException("L'articolo con codice " + libro.getISBN() + " è già presente in archivio...");
         }
     }
 
     public void addMagazine() throws DuplicatedCodeException {
         Periodicità periodicitàCasuale = Periodicità.values()[(int) (Math.random() * Periodicità.values().length)]; // valore randomico di periodicità della rivista
-        rivista = new Rivista(faker.book().title().hashCode(),getAnnoDiPubblicazione(), getNumeroDiPagine(), periodicitàCasuale);
+        rivista = new Rivista((int) (Math.random() * 200),getAnnoDiPubblicazione(), getNumeroDiPagine(), periodicitàCasuale);
         isDuplicated = checkDuplicatedCode(rivista);
         if(!isDuplicated) {
             archivioList.add(rivista);
         } else {
-            throw new DuplicatedCodeException("L'articolo è già presente in archivio...");
+            throw new DuplicatedCodeException("L'articolo con codice " + rivista.getISBN() + " è già presente in archivio...");
         }
     }
 
