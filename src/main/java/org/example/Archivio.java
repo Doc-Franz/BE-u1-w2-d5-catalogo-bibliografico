@@ -2,6 +2,7 @@ package org.example;
 
 import com.github.javafaker.Faker;
 
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -27,7 +28,6 @@ public class Archivio {
 
     public void addBook() throws DuplicatedCodeException {
         libro = new Libro(faker.book().title().hashCode(), getAnnoDiPubblicazione(), getNumeroDiPagine(), faker.book().author(), faker.book().genre());
-        System.out.println(isDuplicated);
         if (!isDuplicated) {
             archivioList.add(libro);
         } else {
@@ -36,11 +36,11 @@ public class Archivio {
     }
 
     public void addMagazine() throws DuplicatedCodeException {
-        rivista = new Rivista(faker.book().title().hashCode(),getAnnoDiPubblicazione(), getNumeroDiPagine());
+        Periodicità periodicitàCasuale = Periodicità.values()[(int) (Math.random() * Periodicità.values().length)]; // valore randomico di periodicità della rivista
+        rivista = new Rivista(faker.book().title().hashCode(),getAnnoDiPubblicazione(), getNumeroDiPagine(), periodicitàCasuale);
         isDuplicated = checkDuplicatedCode(rivista);
         if(!isDuplicated) {
             archivioList.add(rivista);
-            System.out.println();
         } else {
             throw new DuplicatedCodeException("L'articolo è già presente in archivio...");
         }

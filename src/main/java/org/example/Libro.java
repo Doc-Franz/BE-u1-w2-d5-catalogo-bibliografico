@@ -31,7 +31,7 @@ public class Libro extends ArticoloBibliografico{
         return "Libro{" +
                 "autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
-                ", ISBN='" + ISBN + '\'' +
+                ", ISBN=" + ISBN +
                 ", annoDiPubblicazione=" + annoDiPubblicazione +
                 ", numeroDiPagine=" + numeroDiPagine +
                 '}';

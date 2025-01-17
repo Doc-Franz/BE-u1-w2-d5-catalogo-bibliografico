@@ -34,4 +34,5 @@ public abstract class ArticoloBibliografico {
     public void setNumeroDiPagine(int numeroDiPagine) {
         this.numeroDiPagine = numeroDiPagine;
     }
+
 }
