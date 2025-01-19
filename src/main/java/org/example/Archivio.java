@@ -9,9 +9,7 @@ import java.util.Locale;
 
 public class Archivio {
 
-    private List<Libro> bookList = new ArrayList<>(); // lista di libri
     private Libro libro;
-    private List<Rivista> magazineList = new ArrayList<>(); // lista di riviste
     private Rivista rivista;
     public List<ArticoloBibliografico> archivioList = new ArrayList<>();
     boolean isDuplicated;
@@ -28,6 +26,7 @@ public class Archivio {
 
     public void addBook() throws DuplicatedCodeException {
         libro = new Libro((int) (Math.random() * 200), getAnnoDiPubblicazione(), getNumeroDiPagine(), faker.book().author(), faker.book().genre());
+        isDuplicated = checkDuplicatedCode(libro);
         if (!isDuplicated) {
             archivioList.add(libro);
         } else {
